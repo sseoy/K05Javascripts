@@ -60,10 +60,15 @@
                     break;
                 case "=":
                     result.innerHTML=(eval(result.innerHTML));
+                    /*
+                    소수점 두번째 자리까지만 출력해줌
+                    result.toFixed(2);
+                    */
                     break;
                 case "B":
                     var result_sub = result.innerHTML;
                     result.innerHTML =result_sub.substr(0,result_sub.length-1);
+                    
                     
                     break;
                 default :
@@ -82,7 +87,7 @@
     <div>
         <table align="center">
             <tr >
-                <td colspan="4" class="result" id="result">
+                <td colspan="4" class="result" id="result" style="overflow: hidden;">
                 0
                 </td>
                 

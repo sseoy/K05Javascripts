@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>updowngame.html</title>
+    <script type="text/javascript">
+        var g_random= parseInt((Math.random()*100)+1);
+        console.log(g_random);
+        
+        var count=0;
+
+        function gamestart(){
+            var g_try = document.getElementById("g_try");
+            var g_img = document.getElementById("g_img"); 
+            var g_count = document.getElementById("g_count");//시도횟수
+            console.log(g_try.value);//콘솔에 랜덤값 나오게 하기
+            count++;
+
+
+            if(count>7){
+               alert("실패! 7번시도하셨습니다! 재시작");
+                location.reload();
+                g_try.focus();
+                
+            }else if(g_try.value>100 || g_try.value<0){
+                alert("1~100사이의 숫자를 입력해주세요!!");
+                count--;
+                g_try.focus();
+            }else if(g_try.value==""){
+                alert("숫자를 입력해주세요!");
+                count--;
+                g_try.focus();
+            }
+            else{
+                g_count.innerText = count;
+                if(g_try.value > g_random){
+                    g_img.src="./images/down.jpg"
+                    alert("입력하신 숫자보다 낮습니다. DOWN!");
+                    g_try.focus();
+                
+                }else if(g_try.value < g_random){
+                    g_img.src="./images/up.jpg"
+                    alert("입력하신 숫자보다 높습니다. UP!");
+                    g_try.focus();
+                    
+                }else if(g_try.value==g_random){
+                    g_img.src="./images/answer.jpeg"
+                    alert("★★"+count+"번만에 맞추셨어요!★★");
+                    
+                    location.reload();
+                    g_try.focus();
+                   
+
+                }
+               
+            }
+            
+           
+            
+        }
+        function discriminateFn(){
+
+        }
+    </script>
+</head>
+<body>
+    <h1>업 다운 게임</h1>
+    <h2>1~100사이의 숫자를 입력하세요</h2><br>
+
+    <h2>시도 횟수 : <span style="font-size: 50px;" id="g_count">0</span></span> 회</h2>
+    <br>
+    <span style="font-size: 20px;">숫자입력 :
+        <input type="number" style="width: 50px;" id="g_try"/>
+        <input type="button" value="확인" id="g_button" onclick="gamestart();"/>
+    </span>
+    <br><br><br><br>
+
+    <img src="./images/updowngame.jpg" alt="" id="g_img" style="width: 300px; height: 300px;"/>
+
+</body>
+</html>
