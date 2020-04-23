@@ -5,19 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>J15Event07.html</title>
     <script>
+        //타이머와 이동횟수를 제한하기 위한 전역변수 생성
          var timer, count=1, divObj;
 
          function setTimer(obj){
+             //div박스의 DOM를 전역변수에 저장
              divObj = obj;
+             //0.3초에 한번씩 moveObj()함수를 호출한다.
              timer = setInterval("moveObj()",300);
 
          }
          function moveObj(){
              if(count%3==0){
+                 /*
+                 setInterval()로 동작중인 함수의 실행을 중지시킨다.
+                 전역변수인timer를 사용한다.
+                 */
                  clearInterval(timer);
              }
              count++;
-
+             /*
+             div박스의 left속성값을 얻어와서 50px를 더해서 재지정한다.
+             좌측 여백이 커지므로 div박스가 우측으로 이동하는것처럼 보이게된다.
+             */
              var left = parseInt(divObj.style.left);
              divObj.style.left = (left+50)+"px";
          }
@@ -34,6 +44,10 @@
             <th>제목</th>
             <th>작성자</th>
         </tr>
+        <!--
+            JS가 아닌 HTML태그 자체 속성값으로 DOM을 처리하는 경우
+            this를 사용한다.
+        -->
         <tr style="background-color: gray;"
         onmouseover="this.style.backgroundColor='green';"
         onmouseout="this.style.backgroundColor='gray';">
@@ -78,15 +92,23 @@
     <script>
         function fnScale(flag){
             var title = document.getElementById("title");
+            /*
+            현재 HTML문서에 존재하는 모든 div요소중에서 첫번쩨 요소를
+            DOM으로 가져와 변수에 저장한다.
+            */
             var div = document.getElementsByTagName("div")[0];
 
             if(flag==1){
+                //마우스를 눌렀을때(클릭)이벤트
                 title.innerHTML = "<big>mousedown 이벤트 발생</big>";
                 div.style.backgroundColor="green";
+                //div박스의 크기를 가져와서 2배를 늘려준다.
                 div.style.width = parseInt(div.style.width)*2 +"px";
                 div.style.height = parseInt(div.style.height)*2+"px";
+                //width와 같이 크기를 지정할떄는 반드시 px단위를 기술해야한다.
             }
             else if(flag==2){
+                //마우스를 땠을때 이벤트 발생
                 title.innerHTML = "mouseup 이벤트 발생";
                 div.style.backgroundColor = "red";
                 div.style.width = "100px";
