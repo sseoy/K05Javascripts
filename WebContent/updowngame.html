@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>updowngame.html</title>
     <script type="text/javascript">
+        /*
+            난수 생성 구간을 1(최소)~100(최대)로 설정했다면
+            (Math.random()*최대값)+최소값
+            해당 구간의 난수가 생성된다.
+        */
         var g_random= parseInt((Math.random()*100)+1);
         console.log(g_random);
         
@@ -18,8 +23,9 @@
             count++;
 
 
-            if(count>7){
+            if(count>=7){
                alert("실패! 7번시도하셨습니다! 재시작");
+               //페이지에 대한 새로고침, F5을 누른것과 동일하다.
                 location.reload();
                 g_try.focus();
                 
